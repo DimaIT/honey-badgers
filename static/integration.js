@@ -24,6 +24,8 @@ async function create_session() {
             url,
             headless: false,
             ui_off: true,
+            audit_logs_enabled: true,
+            s3_audit_log_bucket: true,
             script_embedded: `https://dimait.github.io/honey-badgers/static/embedded/index.js?random=${Math.random()}`, // point this URL to your own embedded script
         }),
     };

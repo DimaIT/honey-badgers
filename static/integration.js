@@ -18,7 +18,7 @@ async function create_session() {
         body: JSON.stringify({
             url,
             headless: true,
-            script_embedded: "https://dimait.github.io/honey-badgers/script_embedded.js", // point this URL to your own embedded script
+            script_embedded: "https://dimait.github.io/honey-badgers/embedded/index.js", // point this URL to your own embedded script
         }),
     };
 

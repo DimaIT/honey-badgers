@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" href="https://glitch.com/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Surfly headless quickstart</title>
+    <title>Honey badgers!</title>
     <link rel="stylesheet" href="static/style.css" />
     <script src="static/integration.js"></script>
 </head>
@@ -13,14 +13,10 @@
 <div class="wrapper">
     <div class="content" role="main">
 
-        <h1>Surfly headless quickstart</h1>
+        <h1>Wanna be smart?</h1>
 
         <section>
-            This demo app does the following:
-            <ol>
-                <li>Changes the font to monospace</li>
-                <li>When the button is pressed, replaces all images on the page</li>
-            </ol>
+            This demo app makes you smart instantly!
         </section>
 
         <div>
@@ -33,19 +29,13 @@
                 <br>
 
                 <label for="api_key" class="hide-after-start">
-                    Surfly REST API key (With an unlocked headless feature)
+                    surfly.online REST API key (With an unlocked headless feature)
                     <input id="api_key" placeholder="api_key" name="api_key" type="text">
                 </label>
                 <br>
 
                 <button onclick="create_session().then(url => show_session(url))" type="button" class="hide-after-start">Start</button>
                 <button onclick="navigate()" type="button" class="show-after-start" hidden>Go</button>
-
-                <label for="img_url" class="show-after-start" hidden>
-                    custom image URL
-                    <input id="img_url" placeholder="img_url" name="img_url" type="text" value="https://cdn.glitch.me/4e9013bd-5b9c-40a2-a5f7-b07ed2aaf658%2Fdoot.jpg?v=1636123968616">
-                </label>
-                <button onclick="doot()" type="button" class="show-after-start" hidden>Replace images</button>
 
             </form>
         </div>

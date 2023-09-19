@@ -52,9 +52,3 @@ function navigate() {
     let url = document.querySelector('#url').value;
     command({type: 'nav', url});
 }
-
-// tell the script_embedded to replace all <img> with a provided image
-function doot() {
-    const url = document.querySelector('#img_url').value;
-    command({type: 'doot', url});
-}

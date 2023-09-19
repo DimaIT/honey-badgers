@@ -5,10 +5,12 @@
 // request a new session from the Surfly API, returns URL for iframe.src
 // WARNING! You should not expose the REST key in frontend source. So if you are planning to hardcode the key, do it in a server-side script and call the API from there.
 async function create_session() {
-    const api_key = document.querySelector('#api_key').value;
+    const apiKey = document.querySelector('#api_key').value;
     const url = document.querySelector('#url').value;
 
-    if (!api_key || !url) return;
+    if (!url) {
+        return;
+    }
 
     const params = {
         method: 'POST',
@@ -17,14 +19,15 @@ async function create_session() {
         },
         body: JSON.stringify({
             url,
-            headless: true,
-            script_embedded: "https://dimait.github.io/honey-badgers/embedded/index.js", // point this URL to your own embedded script
+            headless: false,
+            ui_off: true,
+            script_embedded: "https://dimait.github.io/honey-badgers/static/embedded/index.js", // point this URL to your own embedded script
         }),
     };
 
-    const res = await fetch(`https://surfly.online/v2/sessions/?api_key=${api_key}`, params);
+    const res = await fetch(`https://surfly.online/v2/sessions/?api_key=${apiKey}`, params);
     const data = await res.json();
-    return data.headless_link;
+    return data.leader_link;
 }
 
 // load the session link in the iframe and swap to in-session UI

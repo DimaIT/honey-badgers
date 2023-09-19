@@ -1,4 +1,4 @@
-
+console.log('\nEmbedded script is alive!\n');
 
 // respond to messages sent from the controlling frame
 window.addEventListener('message', event => {

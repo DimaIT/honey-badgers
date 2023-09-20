@@ -68,8 +68,8 @@ const popupTemplate = `
     </button>
     <div class="lookup-content hidden" id="lookup-content">
         <ul>
-            <li>Explain</li>
-            <li>Summarise</li>
+            <li><a href="#">Explain</a></li>
+            <li><a href="#">Summarise</a></li>
         </ul>
     </div>
   </div>

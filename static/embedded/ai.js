@@ -1,4 +1,6 @@
 export async function askAI(action, input) {
+    // normalize action
+    action = action.toLowerCase().trim();
     const key = 'sk-' + 'G0v6coDQfPimmjeyr01PT3BlbkFJ6c1FNxFV4PKmIGZ9VDWh';
     const prompt = `${action} the input.`;
     const params = {

@@ -1,10 +1,12 @@
 // Import fontawesome icons for now
-const fontAwesomeLink = document.createElement('link');
-fontAwesomeLink.rel = 'stylesheet';
-fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css';
-fontAwesomeLink.integrity = 'sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==';
-fontAwesomeLink.crossOrigin = 'anonymous';
-fontAwesomeLink.referrerPolicy = 'no-referrer';
+const fontAwesomeLink = document.createElement("link");
+fontAwesomeLink.rel = "stylesheet";
+fontAwesomeLink.href =
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css";
+fontAwesomeLink.integrity =
+  "sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==";
+fontAwesomeLink.crossOrigin = "anonymous";
+fontAwesomeLink.referrerPolicy = "no-referrer";
 
 // Append the <link> element to the document's <head>
 document.head.appendChild(fontAwesomeLink);

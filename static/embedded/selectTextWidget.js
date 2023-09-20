@@ -87,17 +87,17 @@ const popupButton = document.getElementById("popup-section");
 const lookupContent = document.getElementById("lookup-content");
 const lookupContentActions = document.querySelectorAll("#lookup-content a");
 
+function handleLookupActionClick(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const action = e.target.textContent;
+  const selectedText = window.getSelection().toString().trim();
+  askAI(action, selectedText).then((answer) => { alert(answer) });
+}
 
 document.querySelectorAll("#lookup-content a").forEach(
-    elem => elem.addEventListener("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const action = e.target.textContent;
-        const selectedText = window.getSelection().toString().trim();
-        askAI(action, selectedText).then((answer) => { alert(answer) });
-    })
+    elem => elem.addEventListener("click", handleLookupActionClick)
 );
-
 
 // Function to show the popup button next to selected text
 function showPopupButton() {

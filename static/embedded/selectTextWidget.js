@@ -85,14 +85,19 @@ document.body.appendChild(popupElements);
 
 const popupButton = document.getElementById("popup-section");
 const lookupContent = document.getElementById("lookup-content");
-const lookupContentActions = document.querySelector("#lookup-content a");
+const lookupContentActions = document.querySelectorAll("#lookup-content a");
 
-lookupContentActions.addEventListener("click", function (e) {
-    e.stopPropagation();
-    const action = e.target.textContent;
-    const selectedText = window.getSelection().toString().trim();
-    askAI(action, selectedText).then((answer) => { alert(answer) });
-});
+
+document.querySelectorAll("#lookup-content a").forEach(
+    elem => elem.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const action = e.target.textContent;
+        const selectedText = window.getSelection().toString().trim();
+        askAI(action, selectedText).then((answer) => { alert(answer) });
+    })
+);
+
 
 // Function to show the popup button next to selected text
 function showPopupButton() {

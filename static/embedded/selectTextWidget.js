@@ -88,11 +88,8 @@ const lookupContent = document.getElementById("lookup-content");
 const lookupContentActions = document.querySelectorAll("#lookup-content a");
 
 function handleLookupActionClick(e) {
-  e.preventDefault();
-  e.stopPropagation();
   const action = e.target.textContent;
   const selectedText = window.getSelection().toString().trim();
-  test;
   askAI(action, selectedText).then((answer) => { prompt(answer) });
 }
 

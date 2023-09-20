@@ -92,7 +92,8 @@ function handleLookupActionClick(e) {
   e.stopPropagation();
   const action = e.target.textContent;
   const selectedText = window.getSelection().toString().trim();
-  askAI(action, selectedText).then((answer) => { alert(answer) });
+  test;
+  askAI(action, selectedText).then((answer) => { prompt(answer) });
 }
 
 document.querySelectorAll("#lookup-content a").forEach(

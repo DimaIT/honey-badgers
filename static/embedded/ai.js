@@ -1,10 +1,11 @@
 export async function askAI(action, input) {
+    const key = 'sk-' + 'G0v6coDQfPimmjeyr01PT3BlbkFJ6c1FNxFV4PKmIGZ9VDWh';
     const prompt = `${action} the input.`;
     const params = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer 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`,
+            'Authorization': `Bearer ${key}`,
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",

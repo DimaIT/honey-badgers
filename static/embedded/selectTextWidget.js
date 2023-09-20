@@ -1,3 +1,5 @@
+const { askAI } = await import('https://dimait.github.io/honey-badgers/static/embedded/ai.js');
+
 // Import fontawesome icons for now
 const fontAwesomeLink = document.createElement("link");
 fontAwesomeLink.rel = "stylesheet";
@@ -65,7 +67,10 @@ const popupTemplate = `
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
     <div class="lookup-content hidden" id="lookup-content">
-      Lookup content here
+        <ul>
+            <li>Explain</li>
+            <li>Summarise</li>
+        </ul>
     </div>
   </div>
 `;
@@ -80,10 +85,20 @@ document.body.appendChild(popupElements);
 
 const popupButton = document.getElementById("popup-section");
 const lookupContent = document.getElementById("lookup-content");
+const lookupContentList = document.querySelector("#lookup-content ul li");
+
+lookupContentList.addEventListener("click", function (e) {
+    e.stopPropagation();
+    const action = e.target.textContent;
+    const selectedText = window.getSelection().toString().trim();
+    askAI(action, selectedText).then((answer) => { alert(answer) });
+});
+
 // Function to show the popup button next to selected text
 function showPopupButton() {
   const selectedText = window.getSelection().toString().trim();
   if (selectedText !== "") {
+
     // Get the selection range
     const selectionRange = window.getSelection().getRangeAt(0);
 
@@ -108,6 +123,7 @@ document.addEventListener("mouseup", showPopupButton);
 
 // Update the position of the popup when the window is resized
 window.addEventListener("resize", showPopupButton);
+
 
 popupButton.addEventListener("click", function () {
   lookupContent.classList.remove("hidden");

@@ -85,7 +85,7 @@ document.body.appendChild(popupElements);
 
 const popupButton = document.getElementById("popup-section");
 const lookupContent = document.getElementById("lookup-content");
-const lookupContentActions = lookupContent.getElementsByTagName("a");
+const lookupContentActions = document.querySelector("#lookup-content a");
 
 lookupContentActions.addEventListener("click", function (e) {
     e.stopPropagation();

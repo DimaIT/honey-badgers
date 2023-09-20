@@ -90,7 +90,9 @@ const lookupContentActions = document.querySelectorAll("#lookup-content a");
 function handleLookupActionClick(e) {
   const action = e.target.textContent;
   const selectedText = window.getSelection().toString().trim();
-  askAI(action, selectedText).then((answer) => { prompt(answer) });
+  askAI(action, selectedText).then((answer) => {
+    console.log(answer)
+  });
 }
 
 document.querySelectorAll("#lookup-content a").forEach(

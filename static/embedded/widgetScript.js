@@ -30,6 +30,7 @@ const closeAll = () => {
   popupButtonLookup.classList.remove("active");
   lookupContentText.textContent = "";
   translatedTextSection.textContent = "";
+  summaryText.textContent = "";
 }
 
 function replaceLinksInTextWithAnchors(text) {
@@ -49,6 +50,10 @@ function showPopupSection() {
   }
 
   const selectedText = window.getSelection().toString().trim();
+  if (selectedText !== selectedTextForLookup) {
+    closeAll(); // reset state
+  }
+
   if (selectedText !== "") {
     selectedTextForLookup = selectedText;
     const selectionRange = window.getSelection().getRangeAt(0);

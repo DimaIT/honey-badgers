@@ -6,7 +6,6 @@ const popupSection = root.getElementById("popup-section");
 
 const lookupContent = root.getElementById("lookup-content");
 const translationContent = root.getElementById("translation-content");
-const summaryContent = root.getElementById("summary-content");
 const hideAllContent = () => {
   lookupContent.classList.add("hidden");
   translationContent.classList.add("hidden");
@@ -23,6 +22,15 @@ const translatedTextSection = root.getElementById(
 );
 let selectedTextForLookup = "";
 let speech = "";
+
+const closeAll = () => {
+  responsiveVoice.cancel();
+  popupSection.classList.add("hidden");
+  hideAllContent();
+  popupButtonLookup.classList.remove("active");
+  lookupContentText.textContent = "";
+  translatedTextSection.textContent = "";
+}
 
 function replaceLinksInTextWithAnchors(text) {
   const urlRegex = /https?:\/\/[^\s/$.?#].[^\s]*\b/g;
@@ -67,12 +75,7 @@ function showPopupSection() {
 
     popupSection.classList.remove("hidden");
   } else {
-    responsiveVoice.cancel();
-    popupSection.classList.add("hidden");
-    hideAllContent();
-    popupButtonLookup.classList.remove("active");
-    lookupContentText.textContent = "";
-    translatedTextSection.textContent = "";
+    closeAll();
   }
 }
 
@@ -80,6 +83,10 @@ function speechToText(event) {
   event.stopPropagation();
   responsiveVoice.speak(speech);
 }
+
+/*
+* Lookup
+*/
 
 popupButtonLookup.addEventListener("click", async function (event) {
   event.stopPropagation();
@@ -104,6 +111,10 @@ popupButtonLookup.addEventListener("click", async function (event) {
     })
   }
 });
+
+/*
+* Translation
+*/
 
 async function translateText(event) {
   event.stopPropagation();
@@ -133,9 +144,49 @@ popupButtonTranslate.addEventListener("click", async function (event) {
 speechToTextButton.addEventListener("click", speechToText);
 selectedLanguage.addEventListener("change", translateText);
 
+/*
+* Summary
+*/
 
-const summarizeButton = root.getElementById('summarize-button');
-summarizeButton.addEventListener("click", () => {
+const SUMMARY_MIN_LENGTH = 80;
+
+const summaryButton = root.getElementById('summary-button');
+const summaryContent = root.getElementById("summary-content");
+const summaryText = root.getElementById('summary-text');
+const summaryLengthInput = root.getElementById('summary-length');
+
+function generateSummary() {
+  if (selectedTextForLookup.length < SUMMARY_MIN_LENGTH) {
+    translatedTextSection.textContent = "The selection is too short for the summarization :(";
+    return;
+  }
+
+  const preferredLength = summaryLengthInput.value;
+  console.assert(preferredLength > 0 && preferredLength < 100);
+
+  translatedTextSection.textContent = "Loading...";
+  try {
+    // const result = await askAItoTranslate(
+    //     selectedTextForLookup,
+    //     selectedLanguage.value
+    // );
+    summaryText.innerHTML = `I'm the summary, bla bla bla, the length is ${preferredLength}%`;
+  } catch (error) {
+    summaryText.textContent = "An error occurred.";
+    console.error(error);
+  }
+}
+
+summaryButton.addEventListener("click", () => {
+  if (!selectedTextForLookup) {
+    closeAll();
+    return;
+  }
+
   hideAllContent();
   summaryContent.classList.remove("hidden");
+
+  generateSummary()
 });
+
+summaryLengthInput.addEventListener('change', generateSummary)

@@ -12,7 +12,7 @@ const popupTemplate = `
             <i class="fa-solid fa-language icon-color"></i> Translate
           </button>
           <hr />
-          <button id="summarize-button" class="popup-button">
+          <button id="summary-button" class="popup-button">
             Summarize
           </button>
         </div>
@@ -40,8 +40,9 @@ const popupTemplate = `
         </div>
 
         <div class="lookup-content hidden" id="summary-content">
-          <span>short</span>
-          <span>long</span>
+          <span>shorter</span>
+          <input type="range" id="summary-length" min="10" max="50" step="10" value="10" />
+          <span>longer</span>
           <hr>
           <div id="summary-text"></div>
         </div>

@@ -3,6 +3,7 @@ console.log('\nEmbedded script is alive!\n\n');
 document.addEventListener("DOMContentLoaded", async (event) => {
     const root = document.createElement('div')
     root.id = 'surfly-shadow-host';
+    root.style = 'padding: 0; margin: 0';
     root.attachShadow({ mode: "open" });
     document.body.appendChild(root);
 

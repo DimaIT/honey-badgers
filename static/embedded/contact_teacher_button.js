@@ -8,6 +8,9 @@ button.style.right = "50px";
 button.style.backgroundColor = "red";
 button.style.color = "white";
 button.style.zIndex = "2147483647";
+button.style.border = "0";
+button.style.padding = "20px";
+
 
 button.addEventListener("click", async function() {
     const apiKey = "5f774775d45b4328b2c8976a841418c8";

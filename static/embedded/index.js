@@ -2,8 +2,10 @@ console.log('\nEmbedded script is alive!\n\n');
 
 (async function init() {
     const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
-    await import('https://dimait.github.io/honey-badgers/static/embedded/selectTextWidget.js');
-
+    // await import('https://dimait.github.io/honey-badgers/static/embedded/selectTextWidget.js');
+    await import('https://dimait.github.io/honey-badgers/static/embedded/widgetCSS.js');
+    await import('https://dimait.github.io/honey-badgers/static/embedded/widgetHtml.js');
+    await import('https://dimait.github.io/honey-badgers/static/embedded/widgetScript.js');
     // const input = "Despite a police complaint being registered in May, no investigation into the incident took place until a video of it surfaced on social media in July. That's when the conflict in Manipur caught the attention of many in India and around the world.";
     // const answer = await askAI('summarise', input);
     // console.log(answer);

@@ -14,7 +14,7 @@ const popupTemplate = `
   <div class="lookup-content hidden" id="lookup-content">
     <h3 style="margin: 0">Lookup</h3>
     <hr />
-    <div id="lookup-content-new"></div>
+    <div id="lookup-content-text"></div>
     <button id="speech-to-text">
       Listen <i class="fa-solid fa-play" style="margin-left: 5px"></i>
     </button>

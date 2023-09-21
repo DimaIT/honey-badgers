@@ -44,7 +44,7 @@ export async function askAItoSummarize(text, percent) {
 }
 
 
-async function ai(prompt, maxTokens = 50) {
+async function ai(prompt, maxTokens = 100) {
   const key = "sk-" + "G0v6coDQfPimmjeyr01PT3BlbkFJ6c1FNxFV4PKmIGZ9VDWh";
   const params = {
     method: "POST",

@@ -7,13 +7,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     root.attachShadow({ mode: "open" });
     document.body.appendChild(root);
 
-    const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetCSS.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetHtml.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetScript.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/contact_teacher_button.js');
 
-    submitLog({ test: 'test' });
 
     // respond to messages sent from the controlling frame
     window.addEventListener('message', event => {

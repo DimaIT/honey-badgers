@@ -1,3 +1,5 @@
+const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
+
 const root = document.getElementById('surfly-shadow-host').shadowRoot;
 const popupSection = root.getElementById("popup-section");
 const lookupContent = root.getElementById("lookup-content");
@@ -63,7 +65,7 @@ popupSection.addEventListener("click", async function (event) {
   event.stopPropagation();
   lookupContent.classList.remove("hidden");
   activeButton.classList.add("active");
-  if (selectedTextForLookup != "") {
+  if (selectedTextForLookup !== "") {
     lookupContentText.textContent = "Loading...";
 
     try {
@@ -75,6 +77,11 @@ popupSection.addEventListener("click", async function (event) {
       lookupContentText.textContent = "An error occurred.";
       console.error(error);
     }
+    submitLog({
+      type: 'selection-ai-toolbox',
+      action: 'lookup',
+      text: selectedTextForLookup,
+    })
   }
 });
 

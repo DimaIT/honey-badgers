@@ -96,6 +96,11 @@ popupButtonLookup.addEventListener("click", async function (event) {
     lookupContentText.textContent = "Loading...";
 
     try {
+      submitLog({
+        type: 'selection-ai-toolbox',
+        action: 'lookup',
+        text: selectedTextForLookup,
+      })
       const result = await askAI(selectedTextForLookup);
       speech = result;
       const finalResult = replaceLinksInTextWithAnchors(result);
@@ -104,11 +109,6 @@ popupButtonLookup.addEventListener("click", async function (event) {
       lookupContentText.textContent = "An error occurred.";
       console.error(error);
     }
-    submitLog({
-      type: 'selection-ai-toolbox',
-      action: 'lookup',
-      text: selectedTextForLookup,
-    })
   }
 });
 
@@ -125,6 +125,11 @@ async function translateText(event) {
     translatedTextSection.textContent = "Loading...";
 
     try {
+      submitLog({
+        type: 'selection-ai-toolbox',
+        action: 'translate',
+        text: selectedTextForLookup,
+      })
       const result = await askAItoTranslate(
         selectedTextForLookup,
         selectedLanguage.value
@@ -166,6 +171,11 @@ async function generateSummary() {
 
   translatedTextSection.textContent = "Loading...";
   try {
+    submitLog({
+      type: 'selection-ai-toolbox',
+      action: 'summarize',
+      text: selectedTextForLookup,
+    })
     summaryText.innerText = await askAItoSummarize(
         selectedTextForLookup,
         preferredLength,

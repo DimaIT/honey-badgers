@@ -1,6 +1,11 @@
 console.log('\nEmbedded script is alive!\n\n');
 
-(async function init() {
+document.addEventListener("DOMContentLoaded", async (event) => {
+    const root = document.createElement('div')
+    root.id = 'surfly-shadow-host';
+    root.attachShadow({ mode: "open" });
+    document.body.appendChild(root);
+
     const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetCSS.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetHtml.js');
@@ -19,4 +24,4 @@ console.log('\nEmbedded script is alive!\n\n');
             // user requested images to be replaced
         }
     });
-})();
+});

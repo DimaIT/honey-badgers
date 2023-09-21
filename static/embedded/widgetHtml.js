@@ -1,3 +1,5 @@
+const root = document.getElementById('surfly-shadow-host').shadowRoot;
+
 const popupTemplate = `
 <div class="widget">
 <div id="popup-section" class="hidden">
@@ -29,4 +31,4 @@ const popupElements = parser.parseFromString(popupTemplate, "text/html").body
   .firstChild;
 
 // Append the popupElements to the body or another suitable container
-document.body.appendChild(popupElements);
+root.appendChild(popupElements);

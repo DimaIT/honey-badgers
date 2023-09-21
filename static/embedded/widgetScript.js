@@ -1,8 +1,9 @@
-const popupSection = document.getElementById("popup-section");
-const lookupContent = document.getElementById("lookup-content");
-const lookupContentText = document.getElementById("lookup-content-text");
-const activeButton = document.getElementById("popup-button");
-const speechToTextButton = document.getElementById("speech-to-text");
+const root = document.getElementById('surfly-shadow-host').shadowRoot;
+const popupSection = root.getElementById("popup-section");
+const lookupContent = root.getElementById("lookup-content");
+const lookupContentText = root.getElementById("lookup-content-text");
+const activeButton = root.getElementById("popup-button");
+const speechToTextButton = root.getElementById("speech-to-text");
 let selectedTextForLookup = "";
 let speech = "";
 

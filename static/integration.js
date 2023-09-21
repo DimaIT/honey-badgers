@@ -41,7 +41,8 @@ window.addEventListener('message', e => {
     if (e.data?.params?.event_type === "viewer_joined") {
         console.log('"viewer_joined"');
         document.querySelector('iframe').contentWindow.frames[0].postMessage(e.data, '*');
-        hide_contact_teacher();
+        hide_contact_teacher_popup();
+        remove_contact_teacher_button();
 
     }
 });
@@ -104,12 +105,17 @@ function create_contact_teacher_button() {
 }
 
 
-function hide_contact_teacher() {
+function remove_contact_teacher_button() {
+    var button = document.getElementById("contact-teacher-button");
+    button.remove();
+}
+
+function hide_contact_teacher_popup() {
     const popup = document.getElementById("teacher-joins-popup");
     popup.style.display = "none";
 }
 
 function cancel_contact_teacher() {
     // TODO - send message to teacher
-    hide_contact_teacher();
+    hide_contact_teacher_popup();
 }

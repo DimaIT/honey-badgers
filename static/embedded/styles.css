@@ -80,4 +80,41 @@
     background: linear-gradient(#c52b521c, #94575735);
     color: #e03b56;
     cursor: pointer;
-}
+  }
+  
+  #translate-controls {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+  }
+  
+  #select-language {
+    flex: 1;
+    height: 30px;
+    padding: 0 20px;
+    border-radius: 20px;
+    outline: 0;
+    border: 0;
+  }
+  
+  #translated-text-section {
+    padding: 10px;
+  }
+  
+  #popup-button2 {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 8px;
+    color: rgb(69, 69, 69);
+    gap: 5px;
+    text-align: center;
+  }
+  
+  #popup-button2:hover {
+    background: linear-gradient(#c52b521c, #94575735);
+    color: #e03b56;
+  }
+  

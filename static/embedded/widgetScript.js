@@ -4,9 +4,15 @@ const { askAI } = await import('https://dimait.github.io/honey-badgers/static/em
 const root = document.getElementById('surfly-shadow-host').shadowRoot;
 const popupSection = root.getElementById("popup-section");
 const lookupContent = root.getElementById("lookup-content");
+const translationContent = root.getElementById("translation-content");
 const lookupContentText = root.getElementById("lookup-content-text");
-const activeButton = root.getElementById("popup-button");
+const popupButtonLookup = root.getElementById("popup-button");
+const popupButtonTranslate = root.getElementById("popup-button2");
 const speechToTextButton = root.getElementById("speech-to-text");
+const selectedLanguage = root.getElementById("select-language");
+const translatedTextSection = root.getElementById(
+  "translated-text-section"
+);
 let selectedTextForLookup = "";
 let speech = "";
 
@@ -46,6 +52,7 @@ function showPopupSection() {
       popupLeft = window.innerWidth - 450;
     } else {
       lookupContent.style.transform = "none";
+      translationContent.style.transform = "none";
     }
     popupSection.style.top = `${popupTop}px`;
     popupSection.style.left = `${popupLeft}px`;
@@ -55,9 +62,10 @@ function showPopupSection() {
     responsiveVoice.cancel();
     popupSection.classList.add("hidden");
     lookupContent.classList.add("hidden");
-    activeButton.classList.remove("active");
-    lookupContent.style.transform = "none";
+    translationContent.classList.add("hidden");
+    popupButtonLookup.classList.remove("active");
     lookupContentText.textContent = "";
+    translatedTextSection.textContent = "";
   }
 }
 
@@ -66,11 +74,11 @@ function speechToText(event) {
   responsiveVoice.speak(speech);
 }
 
-popupSection.addEventListener("click", async function (event) {
+popupButtonLookup.addEventListener("click", async function (event) {
   event.stopPropagation();
-  lookupContent.classList.remove("hidden");
-  activeButton.classList.add("active");
-  if (selectedTextForLookup !== "") {
+  await translationContent.classList.add("hidden");
+  await lookupContent.classList.remove("hidden");
+  if (selectedTextForLookup != "") {
     lookupContentText.textContent = "Loading...";
 
     try {
@@ -90,4 +98,30 @@ popupSection.addEventListener("click", async function (event) {
   }
 });
 
+async function translateText(event) {
+  event.stopPropagation();
+  await lookupContent.classList.add("hidden");
+  await translationContent.classList.remove("hidden");
+  console.log("yess");
+  if (selectedTextForLookup != "") {
+    translatedTextSection.textContent = "Loading...";
+
+    try {
+      const result = await askAItoTranslate(
+        selectedTextForLookup,
+        selectedLanguage.value
+      );
+      translatedTextSection.innerHTML = result;
+    } catch (error) {
+      translatedTextSection.textContent = "An error occurred.";
+      console.error(error);
+    }
+  }
+}
+
+popupButtonTranslate.addEventListener("click", async function (event) {
+  translateText(event);
+});
+
 speechToTextButton.addEventListener("click", speechToText);
+selectedLanguage.addEventListener("change", translateText);

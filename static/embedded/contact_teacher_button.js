@@ -11,7 +11,7 @@ button.style.zIndex = "2147483647";
 
 button.addEventListener("click", async function() {
     const apiKey = "5f774775d45b4328b2c8976a841418c8";
-    const url = document.location.href;
+    const url = "https://wikipedia.org";
 
     const params = {
         method: 'POST',

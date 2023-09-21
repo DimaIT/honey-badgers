@@ -55,7 +55,7 @@
 
 .menu {
     position: relative;
-    width: 200px;
+    width: 280px;
     display: flex;
     padding: 5px;
     justify-content: space-around;
@@ -63,7 +63,6 @@
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     font-size: 15px;
-    padding: 4px;
 }
 
 #speech-to-text {

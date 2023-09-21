@@ -11,9 +11,10 @@ const popupTemplate = `
           <button id="popup-button2" class="popup-button">
             <i class="fa-solid fa-language icon-color"></i> Translate
           </button>
-<!--          <button id="summarize-button" class="popup-button">-->
-<!--            Summarize-->
-<!--          </button>-->
+          <hr />
+          <button id="summarize-button" class="popup-button">
+            Summarize
+          </button>
         </div>
         <div class="lookup-content hidden" id="lookup-content">
           <h3 style="margin: 0">Lookup</h3>
@@ -28,7 +29,7 @@ const popupTemplate = `
           <hr>
           <div id="translate-controls">
             <select name="" id="select-language">
-              <option value="dutch">Dutch</option>
+              <option value="dutch" selected>Dutch</option>
               <option value="english">English</option>
               <option value="french">French</option>
             </select>

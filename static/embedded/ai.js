@@ -37,10 +37,10 @@ export async function askAItoTranslate(text, language) {
 }
 
 export async function askAItoSummarize(text, percent) {
-  const target = text.length / 100 * percent;
-  console.log(`no more than ${target} characters`);
-  console.assert(target < 3000); // just in case
-  return ai(`Please summarize the following text, no more than ${target} characters: ${text}`, target / 2);
+  const target = Math.floor(text.length / 100 * percent / 4);
+  console.log(`no more than ${target} words`);
+  console.assert(target < 1000); // just in case
+  return ai(`Summarize the following text in ${target} words or less: ${text}`, target * 3);
 }
 
 
@@ -61,5 +61,5 @@ async function ai(prompt, maxTokens = 50) {
   const res = await fetch("https://api.openai.com/v1/completions", params);
   const responseData = await res.json();
   const summary = responseData.choices[0]?.text || "";
-  return summary;
+  return summary.trim();
 }

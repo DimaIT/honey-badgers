@@ -41,7 +41,7 @@ const popupTemplate = `
 
         <div class="lookup-content hidden" id="summary-content">
           <span>shorter</span>
-          <input type="range" id="summary-length" min="10" max="50" step="10" value="10" />
+          <input type="range" id="summary-length" min="5" max="45" step="20" value="10" />
           <span>longer</span>
           <hr>
           <div id="summary-text"></div>

@@ -6,10 +6,6 @@
     font-family: sans-serif;
 }
 
-.cursor-pointer {
-    cursor: pointer;
-}
-
 .popup-button {
     all: unset;
     display: flex;
@@ -20,6 +16,7 @@
     color: rgb(69, 69, 69);
     gap: 5px;
     text-align: center;
+    cursor: pointer;
 }
 
 .popup-button:hover {

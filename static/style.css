@@ -83,10 +83,11 @@ button {
 #teacher-joins-popup {
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: 40%;
     background-color: #FFFFFF;
     border: 1px solid #000000;
     border-radius: 4px;
-    padding: 1rem;
+    padding: 30px;
     display: none;
+    text-align: center;
 }

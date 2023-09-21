@@ -98,3 +98,9 @@ function create_contact_teacher_button() {
     // Add the button to the page
     document.getElementsByTagName("body")[0].appendChild(button);
 }
+
+
+function cancel_contact_teacher() {
+    const popup = document.getElementById("teacher-joins-popup");
+    popup.style.display = "none";
+}

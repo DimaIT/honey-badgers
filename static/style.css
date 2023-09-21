@@ -79,14 +79,3 @@ iframe {
 button {
     cursor: pointer;
 }
-
-#contact-teacher-button {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    background-color: red;
-    color: white;
-    border: 0;
-    padding: 20px;
-    z-index: 2147483647;
-}

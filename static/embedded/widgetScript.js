@@ -61,30 +61,45 @@ function showPopupSection() {
     return;
   }
 
-    selectedTextForLookup = selectedText;
-    const selectionRange = window.getSelection().getRangeAt(0);
-    const startRect = selectionRange.getBoundingClientRect();
-    const endNode = selectionRange.endContainer;
-    const popupTop = startRect.bottom + window.scrollY;
-    let popupLeft = startRect.left + window.scrollX;
+  selectedTextForLookup = selectedText;
+  const selectionRange = window.getSelection().getRangeAt(0);
+  const startRect = selectionRange.getBoundingClientRect();
+  const endNode = selectionRange.endContainer;
+  const popupTop = startRect.bottom + window.scrollY;
+  let popupLeft = startRect.left + window.scrollX;
 
-    if (endNode.nodeType === Node.ELEMENT_NODE) {
-      const endRect = endNode.getBoundingClientRect();
-      if (endRect.left > startRect.right) {
-        popupLeft -= 50;
-      }
+  if (endNode.nodeType === Node.ELEMENT_NODE) {
+    const endRect = endNode.getBoundingClientRect();
+    if (endRect.left > startRect.right) {
+      popupLeft -= 50;
     }
+  }
 
-    if (window.innerWidth - popupLeft < 450) {
-      popupLeft = window.innerWidth - 450;
-    } else {
-      lookupContent.style.transform = "none";
-      translationContent.style.transform = "none";
-    }
-    popupSection.style.top = `${popupTop}px`;
-    popupSection.style.left = `${popupLeft}px`;
+  if (window.innerWidth - popupLeft < 450) {
+    popupLeft = window.innerWidth - 450;
+  } else {
+    lookupContent.style.transform = "none";
+    translationContent.style.transform = "none";
+  }
+  popupSection.style.top = `${popupTop}px`;
+  popupSection.style.left = `${popupLeft}px`;
 
-    popupSection.classList.remove("hidden");
+  popupSection.classList.remove("hidden");
+
+  const wordsCount = (selectedText.match(/ /g) ?? []).length
+  const lookupDisabled = wordsCount > LOOKUP_MAX_LENGTH;
+  if (lookupDisabled) {
+    popupButtonLookup.classList.add("inactive");
+  } else {
+    popupButtonLookup.classList.remove("inactive");
+  }
+
+  const summaryDisabled = wordsCount < SUMMARY_MIN_LENGTH;
+  if (summaryDisabled) {
+    summaryButton.classList.add("inactive");
+  } else {
+    summaryButton.classList.remove("inactive");
+  }
 }
 
 function speechToText(event) {
@@ -96,8 +111,13 @@ function speechToText(event) {
 * Lookup
 */
 
+const LOOKUP_MAX_LENGTH = 20;
+
 popupButtonLookup.addEventListener("click", async function (event) {
-  event.stopPropagation();
+  if (popupButtonLookup.classList.contains('inactive')) {
+    return;
+  }
+
   hideAllContent();
   popupButtonLookup.classList.add("active");
   lookupContent.classList.remove("hidden");
@@ -196,6 +216,10 @@ async function generateSummary() {
 }
 
 summaryButton.addEventListener("click", async () => {
+  if (summaryButton.classList.contains('inactive')) {
+    return;
+  }
+
   if (!selectedTextForLookup) {
     closeAll();
     return;

@@ -24,6 +24,15 @@
     color: #e03b56;
 }
 
+.popup-button.inactive {
+    color: #b0b0b0 !important;
+    cursor: default;
+}
+.popup-button.inactive:hover {
+    color: #b0b0b0 !important;
+    background: none;
+}
+
 #popup-section {
     padding: 10px;
     border-radius: 30px;

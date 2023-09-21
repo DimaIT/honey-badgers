@@ -38,7 +38,9 @@ async function create_session() {
 window.addEventListener('message', e => {
     if (e.data?.params?.event_type === "viewer_joined") {
         console.log('"viewer_joined"');
-        document.querySelector('iframe').contentWindow.frames[0].postMessage(e.data, '*')
+        document.querySelector('iframe').contentWindow.frames[0].postMessage(e.data, '*');
+        hide_contact_teacher();
+
     }
 });
 
@@ -100,7 +102,12 @@ function create_contact_teacher_button() {
 }
 
 
-function cancel_contact_teacher() {
+function hide_contact_teacher() {
     const popup = document.getElementById("teacher-joins-popup");
     popup.style.display = "none";
+}
+
+function cancel_contact_teacher() {
+    // TODO - send message to teacher
+    hide_contact_teacher();
 }

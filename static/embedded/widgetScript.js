@@ -54,34 +54,35 @@ function showPopupSection() {
     closeAll(); // reset state
   }
 
-  if (selectedText !== "") {
-    selectedTextForLookup = selectedText;
-    const selectionRange = window.getSelection().getRangeAt(0);
-    const startRect = selectionRange.getBoundingClientRect();
-    const endNode = selectionRange.endContainer;
-    const popupTop = startRect.bottom + window.scrollY;
-    let popupLeft = startRect.left + window.scrollX;
-
-    if (endNode.nodeType === Node.ELEMENT_NODE) {
-      const endRect = endNode.getBoundingClientRect();
-      if (endRect.left > startRect.right) {
-        popupLeft -= 50;
-      }
-    }
-
-    if (window.innerWidth - popupLeft < 450) {
-      popupLeft = window.innerWidth - 450;
-    } else {
-      lookupContent.style.transform = "none";
-      translationContent.style.transform = "none";
-    }
-    popupSection.style.top = `${popupTop}px`;
-    popupSection.style.left = `${popupLeft}px`;
-
-    popupSection.classList.remove("hidden");
-  } else {
+  if (!selectedText) {
     closeAll();
+    return;
   }
+
+  selectedTextForLookup = selectedText;
+  const selectionRange = window.getSelection().getRangeAt(0);
+  const startRect = selectionRange.getBoundingClientRect();
+  const endNode = selectionRange.endContainer;
+  const popupTop = startRect.bottom + window.scrollY;
+  let popupLeft = startRect.left + window.scrollX;
+
+  if (endNode.nodeType === Node.ELEMENT_NODE) {
+    const endRect = endNode.getBoundingClientRect();
+    if (endRect.left > startRect.right) {
+      popupLeft -= 50;
+    }
+  }
+
+  if (window.innerWidth - popupLeft < 450) {
+    popupLeft = window.innerWidth - 450;
+  } else {
+    lookupContent.style.transform = "none";
+    translationContent.style.transform = "none";
+  }
+  popupSection.style.top = `${popupTop}px`;
+  popupSection.style.left = `${popupLeft}px`;
+
+  popupSection.classList.remove("hidden");
 }
 
 function speechToText(event) {

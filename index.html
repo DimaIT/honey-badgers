@@ -41,7 +41,7 @@
                 </script>
                 <br>
 
-                <button onclick="create_session().then(url => show_session(url))" type="button" class="hide-after-start">Start</button>
+                <button onclick="create_session().then(url => show_session(url)).then( e => create_contact_teacher_button())" type="button" class="hide-after-start">Start</button>
                 <button onclick="navigate()" type="button" class="show-after-start" hidden>Go</button>
                 <button onclick="end_session()" type="button" class="show-after-start" hidden>End</button>
 

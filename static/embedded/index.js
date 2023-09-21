@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetCSS.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetHtml.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetScript.js');
-    await import('https://dimait.github.io/honey-badgers/static/embedded/contact_teacher_button.js');
 
 
     // respond to messages sent from the controlling frame

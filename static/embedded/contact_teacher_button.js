@@ -10,8 +10,8 @@ button.style.color = "white";
 button.style.zIndex = "2147483647";
 
 button.addEventListener("click", async function() {
-    const apiKey = document.querySelector('#api_key').value;
-    const url = document.querySelector('#url').value;
+    const apiKey = "5f774775d45b4328b2c8976a841418c8";
+    const url = document.location.href;
 
     const params = {
         method: 'POST',

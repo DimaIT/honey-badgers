@@ -1,5 +1,5 @@
 const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
-const { askAI, askAItoTranslate } = await import('https://dimait.github.io/honey-badgers/static/embedded/ai.js');
+const { askAI, askAItoTranslate, askAItoSummarize } = await import('https://dimait.github.io/honey-badgers/static/embedded/ai.js');
 
 const root = document.getElementById('surfly-shadow-host').shadowRoot;
 const popupSection = root.getElementById("popup-section");
@@ -155,7 +155,7 @@ const summaryContent = root.getElementById("summary-content");
 const summaryText = root.getElementById('summary-text');
 const summaryLengthInput = root.getElementById('summary-length');
 
-function generateSummary() {
+async function generateSummary() {
   if (selectedTextForLookup.length < SUMMARY_MIN_LENGTH) {
     translatedTextSection.textContent = "The selection is too short for the summarization :(";
     return;
@@ -166,18 +166,17 @@ function generateSummary() {
 
   translatedTextSection.textContent = "Loading...";
   try {
-    // const result = await askAItoTranslate(
-    //     selectedTextForLookup,
-    //     selectedLanguage.value
-    // );
-    summaryText.innerHTML = `I'm the summary, bla bla bla, the length is ${preferredLength}%`;
+    summaryText.innerText = await askAItoSummarize(
+        selectedTextForLookup,
+        preferredLength,
+    );
   } catch (error) {
-    summaryText.textContent = "An error occurred.";
+    summaryText.textContent = "An error occurred. Maybe the input is too long...";
     console.error(error);
   }
 }
 
-summaryButton.addEventListener("click", () => {
+summaryButton.addEventListener("click", async () => {
   if (!selectedTextForLookup) {
     closeAll();
     return;
@@ -186,7 +185,7 @@ summaryButton.addEventListener("click", () => {
   hideAllContent();
   summaryContent.classList.remove("hidden");
 
-  generateSummary()
+  await generateSummary();
 });
 
-summaryLengthInput.addEventListener('change', generateSummary)
+summaryLengthInput.addEventListener('change', generateSummary);

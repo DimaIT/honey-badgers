@@ -16,6 +16,7 @@ const popupTemplate = `
             Summarize
           </button>
         </div>
+
         <div class="lookup-content hidden" id="lookup-content">
           <h3 style="margin: 0">Lookup</h3>
           <hr />
@@ -24,6 +25,7 @@ const popupTemplate = `
             Listen <i class="fa-solid fa-play" style="margin-left: 5px"></i>
           </button>
         </div>
+
         <div class="lookup-content hidden" id="translation-content">
           <h3 style="margin: 0;padding:0 6px;">Translation</h3>
           <hr>
@@ -35,6 +37,13 @@ const popupTemplate = `
             </select>
           </div>
           <div id="translated-text-section"></div>
+        </div>
+
+        <div class="lookup-content hidden" id="summary-content">
+          <span>short</span>
+          <span>long</span>
+          <hr>
+          <div id="summary-text"></div>
         </div>
       </div>
     </div>

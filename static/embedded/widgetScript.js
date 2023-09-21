@@ -1,10 +1,18 @@
 const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
-const { askAI,askAItoTranslate } = await import('https://dimait.github.io/honey-badgers/static/embedded/ai.js');
+const { askAI, askAItoTranslate } = await import('https://dimait.github.io/honey-badgers/static/embedded/ai.js');
 
 const root = document.getElementById('surfly-shadow-host').shadowRoot;
 const popupSection = root.getElementById("popup-section");
+
 const lookupContent = root.getElementById("lookup-content");
 const translationContent = root.getElementById("translation-content");
+const summaryContent = root.getElementById("summary-content");
+const hideAllContent = () => {
+  lookupContent.classList.add("hidden");
+  translationContent.classList.add("hidden");
+  summaryContent.classList.add("hidden");
+}
+
 const lookupContentText = root.getElementById("lookup-content-text");
 const popupButtonLookup = root.getElementById("popup-button");
 const popupButtonTranslate = root.getElementById("popup-button2");
@@ -61,8 +69,7 @@ function showPopupSection() {
   } else {
     responsiveVoice.cancel();
     popupSection.classList.add("hidden");
-    lookupContent.classList.add("hidden");
-    translationContent.classList.add("hidden");
+    hideAllContent();
     popupButtonLookup.classList.remove("active");
     lookupContentText.textContent = "";
     translatedTextSection.textContent = "";
@@ -76,8 +83,8 @@ function speechToText(event) {
 
 popupButtonLookup.addEventListener("click", async function (event) {
   event.stopPropagation();
-  await translationContent.classList.add("hidden");
-  await lookupContent.classList.remove("hidden");
+  hideAllContent();
+  lookupContent.classList.remove("hidden");
   if (selectedTextForLookup != "") {
     lookupContentText.textContent = "Loading...";
 
@@ -100,8 +107,8 @@ popupButtonLookup.addEventListener("click", async function (event) {
 
 async function translateText(event) {
   event.stopPropagation();
-  await lookupContent.classList.add("hidden");
-  await translationContent.classList.remove("hidden");
+  hideAllContent();
+  translationContent.classList.remove("hidden");
   console.log("yess");
   if (selectedTextForLookup != "") {
     translatedTextSection.textContent = "Loading...";
@@ -125,3 +132,10 @@ popupButtonTranslate.addEventListener("click", async function (event) {
 
 speechToTextButton.addEventListener("click", speechToText);
 selectedLanguage.addEventListener("change", translateText);
+
+
+const summarizeButton = root.getElementById('summarize-button');
+summarizeButton.addEventListener("click", () => {
+  hideAllContent();
+  summaryContent.classList.remove("hidden");
+});

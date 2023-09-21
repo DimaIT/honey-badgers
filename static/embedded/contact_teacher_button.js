@@ -14,7 +14,7 @@ button.style.padding = "20px";
 
 button.addEventListener("click", async function() {
     const popup = document.getElementById("teacher-joins-popup");
-    popup.classList.remove("hidden");
+    popup.style.display = "block";
 
 });
 

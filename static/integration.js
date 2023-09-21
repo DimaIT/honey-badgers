@@ -35,6 +35,13 @@ async function create_session() {
     return data.leader_link;
 }
 
+window.addEventListener('message', e => {
+    if (e.data?.params?.event_type === "viewer_joined") {
+        console.log('"viewer_joined"');
+        document.querySelector('iframe').contentWindow.frames[0].postMessage(e.data, '*')
+    }
+});
+
 async function end_session() {
     await fetch(`https://surfly.online/v2/sessions/${sessionId}/end/?api_key=${apiKey}`, {
         method: 'POST',

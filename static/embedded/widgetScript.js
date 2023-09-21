@@ -18,10 +18,14 @@ function replaceLinksInTextWithAnchors(text) {
   return resultWithLinks;
 }
 
-document.addEventListener("mouseup", showpopupSection);
-window.addEventListener("resize", showpopupSection);
+document.addEventListener("mouseup", showPopupSection);
+window.addEventListener("resize", showPopupSection);
 
-function showpopupSection() {
+function showPopupSection() {
+  if (root.getSelection().type !== 'None') {
+    return;
+  }
+
   const selectedText = window.getSelection().toString().trim();
   if (selectedText !== "") {
     selectedTextForLookup = selectedText;

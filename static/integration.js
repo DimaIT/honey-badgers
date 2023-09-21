@@ -52,6 +52,7 @@ async function end_session() {
 
 // load the session link in the iframe and swap to in-session UI
 function show_session(headless_link) {
+    console.log('show_session called', headless_link);
     for (const node of document.querySelectorAll('.hide-after-start')) {
         node.setAttribute('hidden', '');
     }

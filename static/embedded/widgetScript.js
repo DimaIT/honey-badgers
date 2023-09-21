@@ -10,6 +10,8 @@ const hideAllContent = () => {
   lookupContent.classList.add("hidden");
   translationContent.classList.add("hidden");
   summaryContent.classList.add("hidden");
+  popupButtonLookup.classList.remove("active");
+  popupButtonTranslate.classList.remove("active")
 }
 
 const lookupContentText = root.getElementById("lookup-content-text");
@@ -59,30 +61,30 @@ function showPopupSection() {
     return;
   }
 
-  selectedTextForLookup = selectedText;
-  const selectionRange = window.getSelection().getRangeAt(0);
-  const startRect = selectionRange.getBoundingClientRect();
-  const endNode = selectionRange.endContainer;
-  const popupTop = startRect.bottom + window.scrollY;
-  let popupLeft = startRect.left + window.scrollX;
+    selectedTextForLookup = selectedText;
+    const selectionRange = window.getSelection().getRangeAt(0);
+    const startRect = selectionRange.getBoundingClientRect();
+    const endNode = selectionRange.endContainer;
+    const popupTop = startRect.bottom + window.scrollY;
+    let popupLeft = startRect.left + window.scrollX;
 
-  if (endNode.nodeType === Node.ELEMENT_NODE) {
-    const endRect = endNode.getBoundingClientRect();
-    if (endRect.left > startRect.right) {
-      popupLeft -= 50;
+    if (endNode.nodeType === Node.ELEMENT_NODE) {
+      const endRect = endNode.getBoundingClientRect();
+      if (endRect.left > startRect.right) {
+        popupLeft -= 50;
+      }
     }
-  }
 
-  if (window.innerWidth - popupLeft < 450) {
-    popupLeft = window.innerWidth - 450;
-  } else {
-    lookupContent.style.transform = "none";
-    translationContent.style.transform = "none";
-  }
-  popupSection.style.top = `${popupTop}px`;
-  popupSection.style.left = `${popupLeft}px`;
+    if (window.innerWidth - popupLeft < 450) {
+      popupLeft = window.innerWidth - 450;
+    } else {
+      lookupContent.style.transform = "none";
+      translationContent.style.transform = "none";
+    }
+    popupSection.style.top = `${popupTop}px`;
+    popupSection.style.left = `${popupLeft}px`;
 
-  popupSection.classList.remove("hidden");
+    popupSection.classList.remove("hidden");
 }
 
 function speechToText(event) {
@@ -97,6 +99,7 @@ function speechToText(event) {
 popupButtonLookup.addEventListener("click", async function (event) {
   event.stopPropagation();
   hideAllContent();
+  popupButtonLookup.classList.add("active");
   lookupContent.classList.remove("hidden");
   if (selectedTextForLookup != "") {
     lookupContentText.textContent = "Loading...";
@@ -125,8 +128,8 @@ popupButtonLookup.addEventListener("click", async function (event) {
 async function translateText(event) {
   event.stopPropagation();
   hideAllContent();
+  popupButtonTranslate.classList.add("active")
   translationContent.classList.remove("hidden");
-  console.log("yess");
   if (selectedTextForLookup != "") {
     translatedTextSection.textContent = "Loading...";
 

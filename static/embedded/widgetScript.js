@@ -1,4 +1,5 @@
 const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
+const { askAI } = await import('https://dimait.github.io/honey-badgers/static/embedded/ai.js');
 
 const root = document.getElementById('surfly-shadow-host').shadowRoot;
 const popupSection = root.getElementById("popup-section");

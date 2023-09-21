@@ -65,7 +65,7 @@ function showPopupButton() {
 
     popupButton.classList.remove("hidden");
   } else {
-    responsiveVoice.cancel();
+    // responsiveVoice.cancel();
     popupButton.classList.add("hidden");
     lookupContent.classList.add("hidden");
     activeButton.classList.remove("active");
@@ -76,7 +76,7 @@ function showPopupButton() {
 
 function speechToText(event) {
   event.stopPropagation();
-  responsiveVoice.speak(speech);
+  // responsiveVoice.speak(speech);
 }
 
 popupButton.addEventListener("click", async function (event) {

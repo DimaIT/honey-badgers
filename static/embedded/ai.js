@@ -47,3 +47,36 @@ export async function askAI(text) {
     const summary = responseData.choices[0]?.text || "";
     return summary;
 }
+
+export async function askAItoTranslate(text, language) {
+    // normalize action
+    const apiUrl = "https://api.openai.com/v1/completions";
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer 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`, // Replace with your OpenAI API key
+        },
+        body: JSON.stringify({
+          prompt: `Please translate the following text to ${language}: ${text}`,
+          model: "gpt-3.5-turbo-instruct",
+          max_tokens: 50, // Adjust as needed for your summary length
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+  
+      const responseData = await response.json();
+      const summary = responseData.choices[0]?.text || "";
+  
+      return summary;
+    } catch (error) {
+      console.error(error);
+      throw new Error(
+        "An error occurred while fetching the summary from ChatGPT."
+      );
+    }
+  }

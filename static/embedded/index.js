@@ -2,7 +2,6 @@ console.log('\nEmbedded script is alive!\n\n');
 
 (async function init() {
     const { submitLog } = await import('https://dimait.github.io/honey-badgers/static/embedded/session-logs.js');
-    // await import('https://dimait.github.io/honey-badgers/static/embedded/selectTextWidget.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetCSS.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetHtml.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetScript.js');

@@ -11,6 +11,9 @@ fontAwesomeCss.referrerPolicy = "no-referrer";
 document.head.appendChild(responsiveVoiceScript);
 document.head.appendChild(fontAwesomeCss);
 
-const sheet = new CSSStyleSheet();
-sheet.insertRule("@import https://dimait.github.io/honey-badgers/static/embedded/style.css;");
-document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+const styleElement = document.createElement("style");
+styleElement.textContent = `import url("/honey-badgers/static/embedded/styles.css");`;
+
+// Append the <style> element to the document's <head>
+document.head.appendChild(styleElement);
+

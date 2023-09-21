@@ -4,13 +4,16 @@ const popupTemplate = `
 <div class="widget">
       <div id="popup-section" class="hidden">
         <div class="menu" style="display: flex">
-          <button id="popup-button">
+          <button id="popup-button" class="popup-button">
             <i class="fa-solid fa-eye icon-color"></i> Lookup
           </button>
           <hr />
-          <button id="popup-button2">
+          <button id="popup-button2" class="popup-button">
             <i class="fa-solid fa-language icon-color"></i> Translate
           </button>
+<!--          <button id="summarize-button" class="popup-button">-->
+<!--            Summarize-->
+<!--          </button>-->
         </div>
         <div class="lookup-content hidden" id="lookup-content">
           <h3 style="margin: 0">Lookup</h3>

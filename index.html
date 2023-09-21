@@ -28,10 +28,17 @@
                 </label>
                 <br>
 
-                <label for="api_key" class="hide-after-start">
+                <label id="api_key_holder" for="api_key" class="hide-after-start">
                     surfly.online REST API key (With an unlocked headless feature)
                     <input id="api_key" placeholder="api_key" name="api_key" type="text">
                 </label>
+                <script>
+                    apiKey = new URLSearchParams(location.search).get('api_key');
+                    if (apiKey) {
+                        document.getElementById('api_key').value = apiKey;
+                    }
+                    document.getElementById('api_key_holder').style = 'display: none'
+                </script>
                 <br>
 
                 <button onclick="create_session().then(url => show_session(url))" type="button" class="hide-after-start">Start</button>

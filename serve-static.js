@@ -14,6 +14,8 @@ http.createServer(function(request, response) {
     let filePath = '.' + request.url;
     if (filePath === './')
         filePath = './demo.html';
+    if (filePath.includes('?'))
+        filePath = filePath.split('?')[0];
 
     console.log(`request starting: ${filePath}`);
 

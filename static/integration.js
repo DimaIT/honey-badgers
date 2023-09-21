@@ -31,6 +31,8 @@ async function create_session() {
 
     const res = await fetch(`https://surfly.online/v2/sessions/?api_key=${apiKey}`, params);
     const data = await res.json();
+    console.log("leader_link", data.leader_link);
+    console.log("follower_link", data.follower_link);
     sessionId = data.session_id;
     return data.leader_link;
 }
@@ -52,7 +54,6 @@ async function end_session() {
 
 // load the session link in the iframe and swap to in-session UI
 function show_session(headless_link) {
-    console.log('show_session called', headless_link);
     for (const node of document.querySelectorAll('.hide-after-start')) {
         node.setAttribute('hidden', '');
     }

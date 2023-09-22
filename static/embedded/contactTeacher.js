@@ -11,16 +11,19 @@ function create_contact_teacher_button() {
     button.style.zIndex = "2147483647";
     button.style.border = "0";
     button.style.padding = "20px";
+    button.onClick = "clickHandler()";
 
-    button.addEventListener("click", async function() {
-        const popup = document.getElementById("teacher-joins-popup");
-        popup.style.display = "block";
-
-    });
 
     // Add the button to the page
     document.getElementsByTagName("body")[0].appendChild(button);
 }
+
+function clickHandler() {
+    const popup = document.getElementById("teacher-joins-popup");
+    popup.style.display = "block";
+
+};
+
 
 function add_popup(){
     var popupDiv = document.createElement('div');

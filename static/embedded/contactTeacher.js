@@ -22,6 +22,23 @@ function create_contact_teacher_button() {
     document.getElementsByTagName("body")[0].appendChild(button);
 }
 
+function add_popup(){
+    var popupDiv = document.createElement('div');
+    popupDiv.id = 'teacher-joins-popup';
+
+    var paragraph = document.createElement('p');
+    paragraph.textContent = 'Your request has been sent to the Teacher. Please wait for them to join.';
+
+    var cancelButton = document.createElement('button');
+    cancelButton.setAttribute('onclick', 'cancel_contact_teacher()');
+    cancelButton.type = 'button';
+    cancelButton.textContent = 'Cancel';
+
+    popupDiv.appendChild(paragraph);
+    popupDiv.appendChild(cancelButton);
+
+    document.getElementsByTagName("body")[0].appendChild(popupDiv);
+}
 
 function remove_contact_teacher_button() {
     var button = document.getElementById("contact-teacher-button");
@@ -40,3 +57,4 @@ function cancel_contact_teacher() {
 
 
 create_contact_teacher_button();
+add_popup();

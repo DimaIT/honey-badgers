@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     await import('https://dimait.github.io/honey-badgers/static/embedded/widgetScript.js');
     await import('https://dimait.github.io/honey-badgers/static/embedded/contactTeacher.js');
 
-    create_contact_teacher_button();
-
     // respond to messages sent from the controlling frame
     window.addEventListener('message', event => {
         // user changed the controlling frame's "address bar"

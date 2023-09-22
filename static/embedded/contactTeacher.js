@@ -37,3 +37,6 @@ function cancel_contact_teacher() {
     // TODO - send message to teacher
     hide_contact_teacher_popup();
 }
+
+
+create_contact_teacher_button();

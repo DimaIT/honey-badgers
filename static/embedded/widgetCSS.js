@@ -12,3 +12,5 @@ linkElement.href = "https://dimait.github.io/honey-badgers/static/embedded/style
 // Append the <link> element to the document's <head>
 root.appendChild(linkElement);
 
+// the .css file will load later, but we need .hidden immediately
+root.innerHTML += `<style>.hidden { display: none !important; }</style>`;
